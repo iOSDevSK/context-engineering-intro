@@ -1,7 +1,9 @@
+---
 name: "Base PRP Template v2 - Context-Rich with Validation Loops"
-description: |
+---
 
 ## Purpose
+
 Template optimized for AI agents to implement features with sufficient context and self-validation capabilities to achieve working code through iterative refinement.
 
 ## Core Principles
@@ -9,14 +11,14 @@ Template optimized for AI agents to implement features with sufficient context a
 2. **Validation Loops**: Provide executable tests/lints the AI can run and fix
 3. **Information Dense**: Use keywords and patterns from the codebase
 4. **Progressive Success**: Start simple, validate, then enhance
-5. **Global rules**: Be sure to follow all rules in CLAUDE.md
+5. **Global rules**: Follow all rules in CLAUDE.md
 
 ---
 
-> **Note**: Adapt the specific syntax, linting, and testing commands in this template to match your project's stack (e.g., Python/Ruff/Pytest, Node/ESLint/Jest, Go/golangci-lint/Go Test).
+> **Note**: Adapt the syntax, linting, and testing commands to match your project's stack (e.g., Python/Ruff/Pytest, Node/ESLint/Jest, Go/golangci-lint/Go Test).
 
 ## Goal
-[What needs to be built - be specific about the end state and desires]
+[What needs to be built — be specific about the end state and desired outcomes]
 
 ## Why
 - [Business value and user impact]
@@ -36,94 +38,93 @@ Template optimized for AI agents to implement features with sufficient context a
 # MUST READ - Include these in your context window
 - url: [Official API docs URL]
   why: [Specific sections/methods you'll need]
-  
-- file: [path/to/example.py]
+
+- file: [path/to/example_file]
   why: [Pattern to follow, gotchas to avoid]
-  
-- doc: [Library documentation URL] 
+
+- doc: [Library documentation URL]
   section: [Specific section about common pitfalls]
   critical: [Key insight that prevents common errors]
 
 - docfile: [PRPs/ai_docs/file.md]
   why: [docs that the user has pasted in to the project]
-
 ```
 
-### Current Codebase tree (run `tree` in the root of the project) to get an overview of the codebase
+### Current Codebase tree (run `tree` in the root of the project)
 ```bash
 
 ```
 
-### Desired Codebase tree with files to be added and responsibility of file
+### Desired Codebase tree with files to be added and responsibility of each file
 ```bash
 
 ```
 
-### Known Gotchas of our codebase & Library Quirks
-```typescript
-// CRITICAL: [Library name] requires [specific setup]
-// Example: FastAPI/Express requires async functions for endpoints
-// Example: This ORM doesn't support batch inserts over 1000 records
-// Example: We use specific versions of our library that have X quirk
+### Known Gotchas & Library Quirks
+```yaml
+# List critical gotchas that will cause failures if missed.
+# Use your project's language — these are examples:
+- gotcha: "[Library name] requires [specific setup]"
+  example: "FastAPI requires async functions for route handlers"
+- gotcha: "[ORM limitation]"
+  example: "This ORM doesn't support batch inserts over 1000 records"
+- gotcha: "[Version-specific quirk]"
+  example: "We use Pydantic v2 — v1 validators won't work"
 ```
 
 ## Implementation Blueprint
 
 ### Data models and structure
 
-Create the core data models, we ensure type safety and consistency.
-```typescript
-Examples: 
- - ORM/DB models
- - Validation schemas (e.g., Pydantic, Zod)
- - DTO schemas
- - Custom types
+Create the core data models to ensure type safety and consistency.
+```yaml
+# Define models appropriate to your stack:
+# - ORM/DB models (SQLAlchemy, Prisma, GORM, etc.)
+# - Validation schemas (Pydantic, Zod, validator, etc.)
+# - DTO schemas
+# - Custom types
 ```
 
-### list of tasks to be completed to fulfill the PRP in the order they should be completed
+### List of tasks to be completed (in execution order)
 
 ```yaml
 Task 1:
-MODIFY src/existing_module.py:
+MODIFY src/existing_module:
   - FIND pattern: "class OldImplementation"
-  - INJECT after line containing "def __init__"
+  - INJECT after line containing "def __init__" / "constructor"
   - PRESERVE existing method signatures
 
-CREATE src/new_feature.py:
-  - MIRROR pattern from: src/similar_feature.py
+CREATE src/new_feature:
+  - MIRROR pattern from: src/similar_feature
   - MODIFY class name and core logic
   - KEEP error handling pattern identical
 
-...(...)
+# ...(...)
 
 Task N:
-...
-
+# ...
 ```
 
+### Per-task pseudocode (add to each task as needed)
+```
+# Task 1 — Pseudocode with CRITICAL details (don't write entire code)
 
-### Per task pseudocode as needed added to each task
-```typescript
-// Task 1
-// Pseudocode with CRITICAL details dont write entire code
-async function newFeature(param: string): Promise<Result> {
-    // PATTERN: Always validate input first (see src/validators.ts)
-    const validated = validateInput(param); 
-    
-    // GOTCHA: This library requires connection pooling
-    const conn = await db.getConnection(); 
-    
-    try {
-        // CRITICAL: API returns 429 if >10 req/sec
-        await rateLimiter.acquire();
-        const apiResponse = await externalApi.call(validated);
-        
-        // PATTERN: Standardized response format
-        return formatResponse(apiResponse); 
-    } finally {
-        conn.release();
-    }
-}
+function newFeature(param):
+    # PATTERN: Always validate input first (see src/validators)
+    validated = validateInput(param)
+
+    # GOTCHA: This library requires connection pooling
+    conn = db.getConnection()
+
+    try:
+        # CRITICAL: API returns 429 if >10 req/sec
+        rateLimiter.acquire()
+        apiResponse = externalApi.call(validated)
+
+        # PATTERN: Standardized response format
+        return formatResponse(apiResponse)
+    finally:
+        conn.release()
 ```
 
 ### Integration Points
@@ -131,47 +132,44 @@ async function newFeature(param: string): Promise<Result> {
 DATABASE:
   - migration: "Add column 'feature_enabled' to users table"
   - index: "CREATE INDEX idx_feature_lookup ON users(feature_id)"
-  
+
 CONFIG:
-  - add to: src/config/index
-  - pattern: "FEATURE_TIMEOUT = process.env.FEATURE_TIMEOUT || 30"
-  
+  - add to: src/config
+  - pattern: "FEATURE_TIMEOUT loaded from env var, default 30"
+
 ROUTES:
-  - add to: src/api/routes  
-  - pattern: "router.register('/feature', featureHandler)"
+  - add to: src/api/routes
+  - pattern: "Register /feature endpoint with featureHandler"
 ```
 
 ## Validation Loop
 
 ### Level 1: Syntax & Style
 ```bash
-# Run these FIRST - fix any errors before proceeding
+# Run these FIRST — fix any errors before proceeding
 {{YOUR_LINTER_COMMAND}} --fix  # Auto-fix what's possible
-{{YOUR_TYPECHECK_COMMAND}}     # Type checking (e.g., tsc --noEmit or mypy .)
+{{YOUR_TYPECHECK_COMMAND}}     # Type checking (e.g., tsc --noEmit, mypy ., go vet)
 
 # Expected: No errors. If errors, READ the error and fix.
 ```
 
-### Level 2: Unit Tests each new feature/file/function use existing test patterns
-```typescript
-// CREATE test file with these test cases:
-test('happy path works', async () => {
-    // Basic functionality works
-    const result = await newFeature("valid_input");
-    expect(result.status).toBe("success");
-});
+### Level 2: Unit Tests (each new feature/file/function — use existing test patterns)
+```yaml
+# CREATE test file with these test cases:
+# (Use your project's test framework syntax — pytest, jest, go test, etc.)
 
-test('invalid input throws validation error', async () => {
-    // Invalid input throws specific Error
-    await expect(newFeature("")).rejects.toThrow(ValidationError);
-});
+Test: "happy path works"
+  - Call newFeature with valid input
+  - Assert result status is "success"
 
-test('handles API timeouts gracefully', async () => {
-    // Should capture timeout and return safe fallback/error response
-    mockExternalApiCall.mockRejectedValueOnce(new TimeoutError());
-    const result = await newFeature("valid");
-    expect(result.status).toBe("error");
-});
+Test: "invalid input throws validation error"
+  - Call newFeature with empty/invalid input
+  - Assert specific validation error is raised
+
+Test: "handles API timeouts gracefully"
+  - Mock external API to return timeout
+  - Call newFeature with valid input
+  - Assert result status is "error" (not crash)
 ```
 
 ```bash
@@ -194,7 +192,7 @@ curl -X POST http://localhost:8000/feature \
 # If error: Check logs for stack trace
 ```
 
-## Final validation Checklist
+## Final Validation Checklist
 - [ ] All tests pass: `{{YOUR_TEST_COMMAND_HERE}}`
 - [ ] No linting errors: `{{YOUR_LINTER_COMMAND}}`
 - [ ] No type errors: `{{YOUR_TYPECHECK_COMMAND}}`
@@ -206,9 +204,9 @@ curl -X POST http://localhost:8000/feature \
 ---
 
 ## Anti-Patterns to Avoid
-- ❌ Don't create new patterns when existing ones work
-- ❌ Don't skip validation because "it should work"  
-- ❌ Don't ignore failing tests - fix them
-- ❌ Don't use sync functions in async context
-- ❌ Don't hardcode values that should be config
-- ❌ Don't catch all exceptions - be specific
+- Don't create new patterns when existing ones work
+- Don't skip validation because "it should work"
+- Don't ignore failing tests — fix them
+- Don't use sync functions in async context
+- Don't hardcode values that should be config
+- Don't catch all exceptions — be specific

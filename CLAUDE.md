@@ -31,14 +31,16 @@
 
 ## Style & Conventions
 
-> Replace these placeholders with your project's specifics:
+> **REQUIRED — Replace these placeholders with your project's specifics before using the framework:**
 
-- **Language**: [e.g., Python, TypeScript, Go]
-- **Formatter/Linter**: [e.g., ruff, eslint, golangci-lint]
-- **Type checking**: [e.g., mypy, tsc --noEmit]
-- **Framework**: [e.g., FastAPI, Next.js, Gin]
-- **ORM/DB**: [e.g., SQLAlchemy, Prisma, GORM]
-- **Validation**: [e.g., pydantic, zod, validator]
+- **Language**: <!-- e.g., Python 3.12, TypeScript 5.x, Go 1.22 -->
+- **Formatter/Linter**: <!-- e.g., ruff, eslint, golangci-lint -->
+- **Type checking**: <!-- e.g., mypy, tsc --noEmit, go vet -->
+- **Framework**: <!-- e.g., FastAPI, Next.js, Gin -->
+- **ORM/DB**: <!-- e.g., SQLAlchemy, Prisma, GORM -->
+- **Validation**: <!-- e.g., pydantic, zod, validator -->
+- **Test runner**: <!-- e.g., pytest, jest, go test -->
+- **Package manager**: <!-- e.g., uv, npm, pnpm, cargo -->
 
 ## Documentation
 
@@ -51,3 +53,4 @@
 - Confirm file paths and module names exist before referencing them.
 - Never delete or overwrite existing code unless explicitly instructed.
 - Never hallucinate libraries or functions — use verified packages only.
+- When a validation loop fails 3+ times on the same error, stop and report the root cause instead of retrying.

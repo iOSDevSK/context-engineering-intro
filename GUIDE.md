@@ -22,6 +22,7 @@ A concise, actionable guide to using this framework. For background theory, see 
 your-project/
 ├── CLAUDE.md                       # Edit: your project rules
 ├── INITIAL.md                      # Edit: per feature
+├── examples/                       # Your code patterns (see examples/README.md)
 ├── PRPs/
 │   └── templates/
 │       └── prp_base.md             # PRP template (keep as-is or customize)
@@ -29,8 +30,13 @@ your-project/
     ├── commands/
     │   ├── generate-prp.md         # /generate-prp command
     │   ├── execute-prp.md          # /execute-prp command
-    │   └── optimize-prompt.md      # /optimize-prompt command
-    └── agents/                     # Optional: add subagents here
+    │   ├── optimize-prompt.md      # /optimize-prompt command
+    │   ├── direct-task.md          # /direct-task command
+    │   └── cleanup-tmp.md          # /cleanup-tmp command
+    ├── agents/                     # Optional: add subagents here
+    │   ├── validation-gates.md     # Example: test runner agent
+    │   └── documentation-manager.md # Example: docs updater agent
+    └── settings.local.json         # Claude Code permissions
 ```
 
 ### 2. Write your CLAUDE.md
@@ -159,7 +165,7 @@ Context Engineering works best when you manage the workflow iteratively. Here is
 
 ## Subagents (Optional)
 
-Define specialized agents in `.claude/agents/`. Each agent gets its own context window with focused expertise.
+Define specialized agents in `.claude/agents/`. Each agent gets its own context window with focused expertise. The examples below are simplified — see the actual files in `.claude/agents/` for full implementations.
 
 **Example: `.claude/agents/validation-gates.md`**
 ```markdown
@@ -232,6 +238,30 @@ Key constraints:
 - Context window: 200K tokens (input + output combined)
 - Max output per response: 64K tokens
 - Use foreground + file-based communication as default
+
+---
+
+## Troubleshooting
+
+### PRP generation produces low-confidence score (<7)
+- **Cause**: Insufficient context in `INITIAL.md` or missing examples.
+- **Fix**: Add more specific code examples to `examples/`, include documentation URLs with specific sections, and add gotchas under OTHER CONSIDERATIONS.
+
+### Agent forgets instructions mid-execution
+- **Cause**: PRP is too large for the context window (>30K tokens).
+- **Fix**: Split into smaller PRPs: `PRPs/01-backend.md`, `PRPs/02-frontend.md`. Execute sequentially.
+
+### Tests pass but the feature doesn't work as expected
+- **Cause**: Success criteria in the PRP are too vague or tests don't cover real user flows.
+- **Fix**: Add integration tests (Level 3) with specific `curl` commands or E2E tests. Make success criteria measurable.
+
+### AI keeps creating new patterns instead of following existing ones
+- **Cause**: No examples provided, or patterns aren't referenced in the PRP.
+- **Fix**: Add real code files to `examples/` and reference them explicitly in INITIAL.md. The `/generate-prp` command will include them in the PRP.
+
+### Claude Code permission errors
+- **Cause**: `.claude/settings.local.json` doesn't allow the needed tools.
+- **Fix**: Add the specific command to the `permissions.allow` array. Use specific patterns (e.g., `Bash(pytest:*)`) rather than wildcards.
 
 ---
 

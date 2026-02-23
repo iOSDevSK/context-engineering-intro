@@ -1,27 +1,42 @@
 #!/bin/bash
-# Example Validation Script for Context Engineering
-# Replace these commands with your stack's actual equivalents.
+# Validation Script Template for Context Engineering
+#
+# Usage: Replace the placeholder commands below with your stack's actual equivalents,
+# then run: chmod +x validate.sh && ./validate.sh
+#
+# This script exits on first failure (set -e). Each phase must pass before the next runs.
 
-set -e # Exit immediately if a command exits with a non-zero status
+set -e
 
-echo "Running validations..."
+echo "=== Phase 1: Linting ==="
+# Uncomment and replace with your linter:
+# npm run lint                  # Node/TypeScript
+# ruff check . --fix            # Python (Ruff)
+# golangci-lint run             # Go
+echo "SKIP: Configure your linter command above"
 
-echo "1. Syntax/Linting Check..."
-# Node: npm run lint
-# Python: ruff check .
-# Go: golangci-lint run
-echo "[Mock] Linting passed."
+echo ""
+echo "=== Phase 2: Type Checking ==="
+# Uncomment and replace with your type checker:
+# npx tsc --noEmit              # TypeScript
+# mypy .                        # Python (mypy)
+# go vet ./...                  # Go
+echo "SKIP: Configure your type checker command above"
 
-echo "2. Type Checking..."
-# Node: npx tsc --noEmit
-# Python: mypy .
-# Go: go vet ./...
-echo "[Mock] Type check passed."
+echo ""
+echo "=== Phase 3: Unit Tests ==="
+# Uncomment and replace with your test runner:
+# npm test                      # Node/Jest
+# pytest tests/ -v              # Python/Pytest
+# go test ./...                 # Go
+echo "SKIP: Configure your test runner command above"
 
-echo "3. Unit Tests..."
-# Node: npm test
-# Python: pytest tests/
-# Go: go test ./...
-echo "[Mock] Unit tests passed."
+echo ""
+echo "=== Phase 4: Integration Tests (optional) ==="
+# Uncomment if you have integration tests:
+# pytest tests/integration/ -v  # Python
+# npm run test:e2e              # Node
+echo "SKIP: Configure integration tests above (optional)"
 
-echo "All validation gates passed successfully!"
+echo ""
+echo "=== All configured validation gates passed ==="

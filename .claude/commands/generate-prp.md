@@ -11,7 +11,7 @@ The AI agent only gets the context you are appending to the PRP and training dat
 1. **Codebase Analysis**
    - **Stack Discovery**: Read config files (package.json, requirements.txt, go.mod) to understand the technology stack.
    - **Architecture Check**: Use folder traversal/tree to understand module layout.
-   - **Pattern Extraction**: Search for exact similar features. Note their class structing, input/output typing, and error handling.
+   - **Pattern Extraction**: Search for exact similar features. Note their class structure, input/output typing, and error handling.
    - **Validation Strategy**: Find test files and extract the exact terminal commands required to run tests and linters for the specific stack.
 
 2. **External Research**
@@ -50,9 +50,12 @@ Read PRPs/templates/prp_base.md and use it as the structural template for the PR
 
 ```
 
-*** CRITICAL AFTER YOU ARE DONE RESEARCHING AND EXPLORING THE CODEBASE BEFORE YOU START WRITING THE PRP ***
-
-*** ULTRATHINK ABOUT THE PRP AND PLAN YOUR APPROACH THEN START WRITING THE PRP ***
+**CRITICAL: Before writing the PRP, pause and plan:**
+1. List every file, URL, and pattern you discovered during research
+2. Identify gaps — what context is still missing for one-pass implementation?
+3. Resolve any conflicting patterns found in the codebase
+4. Draft the task order — which tasks depend on which?
+5. Only then begin writing the PRP
 
 ## Output
 Save as: `PRPs/{feature-name}.md`

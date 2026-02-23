@@ -51,7 +51,10 @@ context-engineering-intro/
 │   ├── commands/
 │   │   ├── generate-prp.md    # Generates PRPs with post-generation quality review
 │   │   ├── execute-prp.md     # Executes PRPs to implement features
-│   │   └── optimize-prompt.md # Optimizes any file for signal-to-noise ratio
+│   │   ├── optimize-prompt.md # Optimizes any file for signal-to-noise ratio
+│   │   ├── direct-task.md     # Bypass PRP for simple tasks
+│   │   └── cleanup-tmp.md     # Clean up tmp/ from sub-agent runs
+│   ├── agents/                # Optional: subagent definitions
 │   └── settings.local.json    # Claude Code permissions
 ├── claude-code-full-guide/
 │   ├── README.md              # 10-tip guide to Claude Code
@@ -75,7 +78,7 @@ context-engineering-intro/
 └── README.md                # This file
 ```
 
-This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
+For RAG-augmented context engineering and advanced tool integration, see future releases of this framework.
 
 ## What is Context Engineering?
 
@@ -111,6 +114,14 @@ Commands are defined in `.claude/commands/`. The `$ARGUMENTS` variable receives 
 
 **examples/** — Code from your project that AI should mimic. More examples = better output. See `examples/README.md` for guidance.
 
+## When to Use PRP vs. Direct Task
+
+| Scenario | Use |
+|---|---|
+| New feature, multi-file, needs patterns | `/generate-prp` + `/execute-prp` |
+| Bug fix, typo, small UI tweak | `/direct-task "description"` |
+| Unclear scope, needs research | `/generate-prp` (the research phase clarifies scope) |
+
 ## Best Practices
 
 1. **Be explicit in INITIAL.md** — don't assume AI knows your preferences
@@ -119,6 +130,7 @@ Commands are defined in `.claude/commands/`. The `$ARGUMENTS` variable receives 
 4. **Leverage documentation** — include URLs with specific sections
 5. **Keep CLAUDE.md dense** — run `/optimize-prompt CLAUDE.md` after editing
 6. **Review generated PRPs** — check context completeness before executing
+7. **Fill in CLAUDE.md placeholders** — the Style & Conventions section must match your stack
 
 ## Resources
 

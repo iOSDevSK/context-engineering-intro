@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **Note**: This is a *comprehensive reference example* for Python projects. In practice, keep your CLAUDE.md much shorter (under 200 lines). Include only the rules and patterns your project actually uses. Run `/optimize-prompt CLAUDE.md` to remove noise.
+
 This file provides comprehensive guidance to Claude Code when working with Python code in this repository.
 
 ## Core Development Philosophy
