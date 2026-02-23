@@ -94,7 +94,7 @@ This will:
 2. Analyze your codebase for patterns
 3. Research documentation
 4. Generate a comprehensive PRP in `PRPs/your-feature.md`
-5. Run a signal quality gate (checks for noise, missing context, conflicts)
+5. Review the PRP for noise, missing context, and conflicts (manual quality checklist)
 6. Score confidence 1-10
 
 ### Step 3: Review the PRP

@@ -1,58 +1,53 @@
-### 🔄 Project Awareness & Context
-- **Always read `PLANNING.md`** at the start of a new conversation to understand the project’s architecture, goals, style, and constraints. *(Create this file for your project — describe architecture decisions, goals, and constraints.)*
-- **Check `TASK.md`** before starting a new task. If the task isn’t listed, add it with a brief description and today’s date. *(Create this file for your project — track current and completed tasks.)*
-- **Use consistent naming conventions, file structure, and architecture patterns** as described in `PLANNING.md`.
-- **Use venv_linux** (the virtual environment) whenever executing Python commands, including for unit tests.
+# Project Rules
 
-### 🧱 Code Structure & Modularity
-- **Never create a file longer than 500 lines of code.** If a file approaches this limit, refactor by splitting it into modules or helper files.
-- **Organize code into clearly separated modules**, grouped by feature or responsibility.
-  For agents this looks like:
-    - `agent.py` - Main agent definition and execution logic 
-    - `tools.py` - Tool functions used by the agent 
-    - `prompts.py` - System prompts
-- **Use clear, consistent imports** (prefer relative imports within packages).
-- **Use python_dotenv and load_env()** for environment variables.
+> Customize this file for your project. Every token here is loaded into every Claude Code conversation — keep it dense. Run `/optimize-prompt CLAUDE.md` after editing.
+> For a language-specific example, see `claude-code-full-guide/CLAUDE.md`.
 
-### 🧪 Testing & Reliability
-- **Always create Pytest unit tests for new features** (functions, classes, routes, etc).
-- **After updating any logic**, check whether existing unit tests need to be updated. If so, do it.
-- **Tests should live in a `/tests` folder** mirroring the main app structure.
-  - Include at least:
-    - 1 test for expected use
-    - 1 edge case
-    - 1 failure case
+## Project Awareness
 
-### ✅ Task Completion
-- **Mark completed tasks in `TASK.md`** immediately after finishing them.
-- Add new sub-tasks or TODOs discovered during development to `TASK.md` under a “Discovered During Work” section.
+- Read `PLANNING.md` at the start of each conversation for architecture, goals, and constraints.
+- Check `TASK.md` before starting work. Add new tasks if missing.
+- Follow naming conventions, file structure, and patterns defined in `PLANNING.md`.
 
-### 📎 Style & Conventions
-- **Use Python** as the primary language.
-- **Follow PEP8**, use type hints, and format with `black`.
-- **Use `pydantic` for data validation**.
-- Use `FastAPI` for APIs and `SQLAlchemy` or `SQLModel` for ORM if applicable.
-- Write **docstrings for every function** using the Google style:
-  ```python
-  def example():
-      """
-      Brief summary.
+> Create `PLANNING.md` and `TASK.md` for your project — they are not part of this template.
 
-      Args:
-          param1 (type): Description.
+## Code Structure
 
-      Returns:
-          type: Description.
-      """
-  ```
+- Max 500 lines per file. Split into modules when approaching the limit.
+- Organize by feature or responsibility.
+- Use clear, consistent imports.
+- Load secrets from environment variables — never hardcode them.
 
-### 📚 Documentation & Explainability
-- **Update `README.md`** when new features are added, dependencies change, or setup steps are modified.
-- **Comment non-obvious code** and ensure everything is understandable to a mid-level developer.
-- When writing complex logic, **add an inline `# Reason:` comment** explaining the why, not just the what.
+## Testing
 
-### 🧠 AI Behavior Rules
-- **Never assume missing context. Ask questions if uncertain.**
-- **Never hallucinate libraries or functions** – only use known, verified Python packages.
-- **Always confirm file paths and module names** exist before referencing them in code or tests.
-- **Never delete or overwrite existing code** unless explicitly instructed to or if part of a task from `TASK.md`.
+- Write tests for every new feature: at least 1 happy path, 1 edge case, 1 failure case.
+- Tests live in `/tests`, mirroring the main app structure.
+- After changing logic, check whether existing tests need updating.
+
+## Task Tracking
+
+- Mark completed tasks in `TASK.md` immediately.
+- Add discovered sub-tasks under a "Discovered During Work" section.
+
+## Style & Conventions
+
+> Replace these placeholders with your project's specifics:
+
+- **Language**: [e.g., Python, TypeScript, Go]
+- **Formatter/Linter**: [e.g., ruff, eslint, golangci-lint]
+- **Type checking**: [e.g., mypy, tsc --noEmit]
+- **Framework**: [e.g., FastAPI, Next.js, Gin]
+- **ORM/DB**: [e.g., SQLAlchemy, Prisma, GORM]
+- **Validation**: [e.g., pydantic, zod, validator]
+
+## Documentation
+
+- Update `README.md` when features, dependencies, or setup steps change.
+- Comment non-obvious logic with `# Reason:` explaining why, not what.
+
+## AI Behavior
+
+- Never assume missing context — ask when uncertain.
+- Confirm file paths and module names exist before referencing them.
+- Never delete or overwrite existing code unless explicitly instructed.
+- Never hallucinate libraries or functions — use verified packages only.
