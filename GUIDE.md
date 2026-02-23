@@ -130,6 +130,8 @@ AI will:
 | `/generate-prp INITIAL.md` | Creates a PRP from your feature request | Start of every feature |
 | `/execute-prp PRPs/feature.md` | Implements code from a PRP | After reviewing the PRP |
 | `/optimize-prompt path/to/file.md` | Maximizes signal-to-noise ratio | On CLAUDE.md, agents, commands, PRPs |
+| `/direct-task "task desc"` | Direct task implementation without PRP overhead | For minor fixes, typos, or small UI tweaks |
+| `/cleanup-tmp` | Deletes execution trace files from `tmp/` | When the workspace gets cluttered with agent artifacts |
 
 ---
 

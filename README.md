@@ -3,6 +3,7 @@
 A template for Context Engineering — the discipline of providing AI coding assistants with the right context to implement features end to end.
 
 > **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
+> **This framework is fine-tuned to be a 10/10, out-of-the-box solution specifically designed for Claude Code.**
 
 > **New here?** Start with the [Practical Guide](./GUIDE.md) for the full workflow.
 
@@ -95,6 +96,8 @@ Why it matters:
 | `/generate-prp INITIAL.md` | Research codebase + create implementation blueprint |
 | `/execute-prp PRPs/feature.md` | Implement code from a PRP with validation loops |
 | `/optimize-prompt path/to/file.md` | Maximize signal-to-noise ratio of any file |
+| `/direct-task "task desc"` | Bypass PRP for simple tasks like UI fixes or typos |
+| `/cleanup-tmp` | Securely clean up `tmp/` folders from sub-agent runs |
 
 Commands are defined in `.claude/commands/`. The `$ARGUMENTS` variable receives what you pass after the command name.
 
