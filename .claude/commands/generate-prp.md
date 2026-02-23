@@ -64,6 +64,31 @@ Save as: `PRPs/{feature-name}.md`
 - [ ] Clear implementation path
 - [ ] Error handling documented
 
+## Signal Quality Gate (post-generation)
+
+After writing the PRP, review it through these lenses before saving:
+
+**Signal/Noise check:**
+- Does every sentence carry unique information? Remove duplicates and filler
+- Are there empty phrases ("It is important to note that...")? → state the requirement directly
+- Is the same thing said multiple ways? → keep the clearest version
+
+**Completeness check:**
+- Are abstract requirements backed by concrete examples?
+- Are edge cases and boundary conditions addressed?
+- Are negative constraints explicit (what MUST NOT happen)?
+- Is it clear what is critical (P0) vs. nice-to-have (P2)?
+
+**Conflict check:**
+- Do any requirements contradict each other?
+- If yes: resolve by priority or define conditional rules
+
+**Clarity check:**
+- Could any requirement be interpreted multiple ways? → add example
+- Are vague terms ("good performance", "clean code") defined with measurable criteria?
+
+If any check fails → fix before saving. The goal is maximum information density with zero ambiguity.
+
 Score the PRP on a scale of 1-10 (confidence level to succeed in one-pass implementation using claude codes)
 
 Remember: The goal is one-pass implementation success through comprehensive context.

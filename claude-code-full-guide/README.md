@@ -270,7 +270,26 @@ Build a user authentication system
 
 **No Vibe Coding**: Validate PRPs before executing them and the code after execution!
 
+**Signal Quality**: The `/generate-prp` command includes a built-in signal quality gate that checks for noise, missing signal, conflicts, and unclear priorities before saving the PRP.
+
 The more specific examples you provide, the better Claude can match your existing patterns and style.
+
+### Prompt Optimization
+
+Use `/optimize-prompt` to maximize the signal-to-noise ratio of any prompt file:
+
+```bash
+# Optimize your project rules (highest ROI — affects every conversation)
+/optimize-prompt CLAUDE.md
+
+# Optimize agent definitions
+/optimize-prompt .claude/agents/validation-gates.md
+
+# Optimize a generated PRP before execution
+/optimize-prompt PRPs/my-feature.md
+```
+
+The optimizer analyzes each sentence for unique signal, removes noise (empty phrases, redundancy, filler), adds missing signal (examples, edge cases, negative constraints), resolves conflicts, and clarifies priorities — while preserving 100% of the original requirements.
 
 *Note: Context engineering works with any AI coding assistant - the PRP framework and example-driven approach are universal principles.*
 
@@ -543,13 +562,12 @@ git merge user-system-2
 | `/primer` | Analyze repository structure |
 | `ESC` | Interrupt Claude |
 | `Shift+Tab` | Enter planning mode |
-| `/generate-prp INITIAL.md` | Create implementation blueprint |
+| `/generate-prp INITIAL.md` | Create implementation blueprint (with signal quality gate) |
 | `/execute-prp PRPs/feature.md` | Implement from blueprint |
+| `/optimize-prompt [file]` | Optimize any prompt/document for signal-to-noise ratio |
 | `/prep-parallel [feature] [count]` | Setup parallel worktrees |
 | `/execute-parallel [feature] [plan] [count]` | Run parallel implementations |
 | `/fix-github-issue [number]` | Auto-fix GitHub issues |
-| `/prep-parallel [feature] [count]` | Setup parallel worktrees |
-| `/execute-parallel [feature] [plan] [count]` | Run parallel implementations |
 
 ---
 

@@ -68,8 +68,9 @@ Context Engineering represents a paradigm shift from traditional prompt engineer
 context-engineering-intro/
 ├── .claude/
 │   ├── commands/
-│   │   ├── generate-prp.md    # Generates comprehensive PRPs
-│   │   └── execute-prp.md     # Executes PRPs to implement features
+│   │   ├── generate-prp.md    # Generates comprehensive PRPs (with signal quality gate)
+│   │   ├── execute-prp.md     # Executes PRPs to implement features
+│   │   └── optimize-prompt.md # Optimizes any prompt/document for signal-to-noise ratio
 │   └── settings.local.json    # Claude Code permissions
 ├── claude-code-full-guide/
 │   ├── README.md              # 10-tip guide to Claude Code
@@ -145,8 +146,9 @@ Run in Claude Code:
 ```
 
 **Note:** The slash commands are custom commands defined in `.claude/commands/`. You can view their implementation:
-- `.claude/commands/generate-prp.md` - See how it researches and creates PRPs
+- `.claude/commands/generate-prp.md` - See how it researches and creates PRPs (includes a signal quality gate)
 - `.claude/commands/execute-prp.md` - See how it implements features from PRPs
+- `.claude/commands/optimize-prompt.md` - Optimizes any prompt or document for maximum signal-to-noise ratio
 
 The `$ARGUMENTS` variable in these commands receives whatever you pass after the command name (e.g., `INITIAL.md` or `PRPs/your-feature.md`).
 
@@ -299,6 +301,12 @@ examples/
 - Add your conventions
 - Include project-specific rules
 - Define coding standards
+
+### 6. Optimize Your Prompts
+- Use `/optimize-prompt` to maximize signal-to-noise ratio in any prompt file
+- Best applied to: CLAUDE.md, agent definitions, slash commands
+- Every token in CLAUDE.md costs context in every conversation — optimization here has the highest ROI
+- The `/generate-prp` command includes a built-in signal quality gate that checks for noise, missing signal, conflicts, and unclear priorities
 
 ## Resources
 
