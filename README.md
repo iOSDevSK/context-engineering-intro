@@ -82,6 +82,8 @@ context-engineering-intro/
 └── README.md                # This file
 ```
 
+The `claude-code-full-guide/` folder also includes a [Workflow Architecture Guide](./claude-code-full-guide/workflow-architecture-guide.md) covering hard limits, context mechanics, and multi-agent workflow strategies (sequential, parallel, large output splitting, agent teams).
+
 This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
 
 ## Step-by-Step Guide

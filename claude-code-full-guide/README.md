@@ -555,6 +555,7 @@ git merge user-system-2
 
 ## 📚 Additional Resources
 
+- [Workflow Architecture Guide](./workflow-architecture-guide.md) - Hard limits, context mechanics, and multi-agent workflow strategies for Claude Code
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
 - [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
 - [MCP Server Library](https://github.com/modelcontextprotocol)
