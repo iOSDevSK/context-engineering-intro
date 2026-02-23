@@ -71,18 +71,26 @@ context-engineering-intro/
 │   │   ├── generate-prp.md    # Generates comprehensive PRPs
 │   │   └── execute-prp.md     # Executes PRPs to implement features
 │   └── settings.local.json    # Claude Code permissions
+├── claude-code-full-guide/
+│   ├── README.md              # 10-tip guide to Claude Code
+│   ├── workflow-architecture-guide.md  # Limits, context mechanics & multi-agent strategies
+│   ├── CLAUDE.md              # Python-specific project rules example
+│   ├── .claude/
+│   │   ├── commands/          # Slash commands (primer, fix-github-issue, parallel)
+│   │   └── agents/            # Subagent definitions (docs manager, validation gates)
+│   └── install_claude_code_windows.md  # Windows WSL installation guide
 ├── PRPs/
 │   ├── templates/
 │   │   └── prp_base.md       # Base template for PRPs
 │   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
 ├── examples/                  # Your code examples (critical!)
+├── use-cases/                 # Specialized templates (Pydantic AI, MCP servers, agent factory)
+├── validation/                # Validation utilities
 ├── CLAUDE.md                 # Global rules for AI assistant
 ├── INITIAL.md               # Template for feature requests
 ├── INITIAL_EXAMPLE.md       # Example feature request
 └── README.md                # This file
 ```
-
-The `claude-code-full-guide/` folder also includes a [Workflow Architecture Guide](./claude-code-full-guide/workflow-architecture-guide.md) covering hard limits, context mechanics, and multi-agent workflow strategies (sequential, parallel, large output splitting, agent teams).
 
 This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
 
