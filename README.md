@@ -4,6 +4,8 @@ A comprehensive template for getting started with Context Engineering - the disc
 
 > **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
 
+> **New here?** Start with the [Practical Guide](./GUIDE.md) — a concise, actionable reference for using this framework.
+
 ## 🚀 Quick Start
 
 ```bash
@@ -89,6 +91,7 @@ context-engineering-intro/
 ├── validation/                # Validation utilities
 ├── CLAUDE.md                 # Global rules for AI assistant
 ├── INITIAL.md               # Template for feature requests
+├── GUIDE.md                 # Practical guide — how to use the framework
 ├── INITIAL_EXAMPLE.md       # Example feature request
 └── README.md                # This file
 ```
