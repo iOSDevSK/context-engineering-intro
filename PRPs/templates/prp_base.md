@@ -13,7 +13,7 @@ Template optimized for AI agents to implement features with sufficient context a
 
 ---
 
-> **Note**: Examples in this template use Python (ruff, mypy, pytest). Replace with your stack's equivalents (e.g., eslint/tsc/vitest for TypeScript, golangci-lint/go test for Go).
+> **Note**: Adapt the specific syntax, linting, and testing commands in this template to match your project's stack (e.g., Python/Ruff/Pytest, Node/ESLint/Jest, Go/golangci-lint/Go Test).
 
 ## Goal
 [What needs to be built - be specific about the end state and desires]
@@ -60,11 +60,11 @@ Template optimized for AI agents to implement features with sufficient context a
 ```
 
 ### Known Gotchas of our codebase & Library Quirks
-```python
-# CRITICAL: [Library name] requires [specific setup]
-# Example: FastAPI requires async functions for endpoints
-# Example: This ORM doesn't support batch inserts over 1000 records
-# Example: We use pydantic v2 and  
+```typescript
+// CRITICAL: [Library name] requires [specific setup]
+// Example: FastAPI/Express requires async functions for endpoints
+// Example: This ORM doesn't support batch inserts over 1000 records
+// Example: We use specific versions of our library that have X quirk
 ```
 
 ## Implementation Blueprint
@@ -72,13 +72,12 @@ Template optimized for AI agents to implement features with sufficient context a
 ### Data models and structure
 
 Create the core data models, we ensure type safety and consistency.
-```python
+```typescript
 Examples: 
- - orm models
- - pydantic models
- - pydantic schemas
- - pydantic validators
-
+ - ORM/DB models
+ - Validation schemas (e.g., Pydantic, Zod)
+ - DTO schemas
+ - Custom types
 ```
 
 ### list of tasks to be completed to fulfill the PRP in the order they should be completed
@@ -104,27 +103,27 @@ Task N:
 
 
 ### Per task pseudocode as needed added to each task
-```python
-
-# Task 1
-# Pseudocode with CRITICAL details dont write entire code
-async def new_feature(param: str) -> Result:
-    # PATTERN: Always validate input first (see src/validators.py)
-    validated = validate_input(param)  # raises ValidationError
+```typescript
+// Task 1
+// Pseudocode with CRITICAL details dont write entire code
+async function newFeature(param: string): Promise<Result> {
+    // PATTERN: Always validate input first (see src/validators.ts)
+    const validated = validateInput(param); 
     
-    # GOTCHA: This library requires connection pooling
-    async with get_connection() as conn:  # see src/db/pool.py
-        # PATTERN: Use existing retry decorator
-        @retry(attempts=3, backoff=exponential)
-        async def _inner():
-            # CRITICAL: API returns 429 if >10 req/sec
-            await rate_limiter.acquire()
-            return await external_api.call(validated)
+    // GOTCHA: This library requires connection pooling
+    const conn = await db.getConnection(); 
+    
+    try {
+        // CRITICAL: API returns 429 if >10 req/sec
+        await rateLimiter.acquire();
+        const apiResponse = await externalApi.call(validated);
         
-        result = await _inner()
-    
-    # PATTERN: Standardized response format
-    return format_response(result)  # see src/utils/responses.py
+        // PATTERN: Standardized response format
+        return formatResponse(apiResponse); 
+    } finally {
+        conn.release();
+    }
+}
 ```
 
 ### Integration Points
@@ -147,36 +146,37 @@ ROUTES:
 ### Level 1: Syntax & Style
 ```bash
 # Run these FIRST - fix any errors before proceeding
-ruff check src/new_feature.py --fix  # Auto-fix what's possible
-mypy src/new_feature.py              # Type checking
+{{YOUR_LINTER_COMMAND}} --fix  # Auto-fix what's possible
+{{YOUR_TYPECHECK_COMMAND}}     # Type checking (e.g., tsc --noEmit or mypy .)
 
 # Expected: No errors. If errors, READ the error and fix.
 ```
 
 ### Level 2: Unit Tests each new feature/file/function use existing test patterns
-```python
-# CREATE test_new_feature.py with these test cases:
-def test_happy_path():
-    """Basic functionality works"""
-    result = new_feature("valid_input")
-    assert result.status == "success"
+```typescript
+// CREATE test file with these test cases:
+test('happy path works', async () => {
+    // Basic functionality works
+    const result = await newFeature("valid_input");
+    expect(result.status).toBe("success");
+});
 
-def test_validation_error():
-    """Invalid input raises ValidationError"""
-    with pytest.raises(ValidationError):
-        new_feature("")
+test('invalid input throws validation error', async () => {
+    // Invalid input throws specific Error
+    await expect(newFeature("")).rejects.toThrow(ValidationError);
+});
 
-def test_external_api_timeout():
-    """Handles timeouts gracefully"""
-    with mock.patch('external_api.call', side_effect=TimeoutError):
-        result = new_feature("valid")
-        assert result.status == "error"
-        assert "timeout" in result.message
+test('handles API timeouts gracefully', async () => {
+    // Should capture timeout and return safe fallback/error response
+    mockExternalApiCall.mockRejectedValueOnce(new TimeoutError());
+    const result = await newFeature("valid");
+    expect(result.status).toBe("error");
+});
 ```
 
 ```bash
 # Run and iterate until passing:
-uv run pytest test_new_feature.py -v
+{{YOUR_TEST_COMMAND_HERE}}
 # If failing: Read error, understand root cause, fix code, re-run (never mock to pass)
 ```
 
@@ -195,9 +195,9 @@ curl -X POST http://localhost:8000/feature \
 ```
 
 ## Final validation Checklist
-- [ ] All tests pass: `uv run pytest tests/ -v`
-- [ ] No linting errors: `uv run ruff check src/`
-- [ ] No type errors: `uv run mypy src/`
+- [ ] All tests pass: `{{YOUR_TEST_COMMAND_HERE}}`
+- [ ] No linting errors: `{{YOUR_LINTER_COMMAND}}`
+- [ ] No type errors: `{{YOUR_TYPECHECK_COMMAND}}`
 - [ ] Manual test successful: [specific curl/command]
 - [ ] Error cases handled gracefully
 - [ ] Logs are informative but not verbose

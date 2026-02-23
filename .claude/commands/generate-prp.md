@@ -9,10 +9,10 @@ The AI agent only gets the context you are appending to the PRP and training dat
 ## Research Process
 
 1. **Codebase Analysis**
-   - Search for similar features/patterns in the codebase
-   - Identify files to reference in PRP
-   - Note existing conventions to follow
-   - Check test patterns for validation approach
+   - **Stack Discovery**: Read config files (package.json, requirements.txt, go.mod) to understand the technology stack.
+   - **Architecture Check**: Use folder traversal/tree to understand module layout.
+   - **Pattern Extraction**: Search for exact similar features. Note their class structing, input/output typing, and error handling.
+   - **Validation Strategy**: Find test files and extract the exact terminal commands required to run tests and linters for the specific stack.
 
 2. **External Research**
    - Search for similar features/patterns online

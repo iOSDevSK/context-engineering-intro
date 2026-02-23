@@ -123,6 +123,28 @@ AI will:
 
 ---
 
+## Advanced Operations & Feedback Loops
+
+Context Engineering works best when you manage the workflow iteratively. Here is how to handle advanced scenarios:
+
+### 1. The Validation Loop Fails Continuously
+- **Symptom**: The AI agent is stuck in a loop, fixing one test but breaking another.
+- **Solution**: Stop the execution (`Ctrl+C`). Do not let it guess blindly.
+- **Action**: Run `/generate-prp INITIAL.md` again on the current state to reassess, OR manually fix the root cause. Often, the PRP lacked an edge-case constraint. Run `/optimize-prompt PRPs/feature.md` to tighten your requirements.
+
+### 2. The PRP Context is Too Large (Agent Paralysis)
+- **Symptom**: The agent forgets parts of the instructions or hits token limits during execution.
+- **Solution**: Split the PRP into smaller, logical chunks.
+- **Action**: Instead of a single `PRPs/full-feature.md`, create `PRPs/01-backend-api.md` and `PRPs/02-frontend-ui.md`. Execute them sequentially (`/execute-prp PRPs/01-backend-api.md`, wait for it to finish, then run part 2).
+
+### 3. Non-Python Projects (Multi-Stack Onboarding)
+- This framework is **Language-Agnostic**. If you are using React, Node, Go, or Rust:
+  1. Edit `CLAUDE.md` to explicitly state your stack, linters, and test runners.
+  2. The `prp_base.md` template uses placeholder commands (`{{YOUR_LINTER_COMMAND}}`)—update them to your actual commands (`npm run test`, `cargo clippy`, etc.).
+  3. Ensure `.claude/settings.local.json` allows your specific CLI tools.
+
+---
+
 ## Commands Reference
 
 | Command | What it does | When to use |
