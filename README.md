@@ -67,7 +67,7 @@ context-engineering-intro/
 │   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
 ├── examples/                  # Your code examples — add your own (see examples/README.md)
 ├── use-cases/                 # Specialized templates (Pydantic AI, MCP servers, agent factory)
-├── validation/                # Validation utilities
+├── validation/                # Validation workflow generators
 ├── CLAUDE.md                 # Global rules for AI assistant (language-agnostic template)
 ├── INITIAL.md               # Template for feature requests
 ├── GUIDE.md                 # Practical guide — how to use the framework

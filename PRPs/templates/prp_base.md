@@ -133,12 +133,12 @@ DATABASE:
   - index: "CREATE INDEX idx_feature_lookup ON users(feature_id)"
   
 CONFIG:
-  - add to: config/settings.py
-  - pattern: "FEATURE_TIMEOUT = int(os.getenv('FEATURE_TIMEOUT', '30'))"
+  - add to: src/config/index
+  - pattern: "FEATURE_TIMEOUT = process.env.FEATURE_TIMEOUT || 30"
   
 ROUTES:
-  - add to: src/api/routes.py  
-  - pattern: "router.include_router(feature_router, prefix='/feature')"
+  - add to: src/api/routes  
+  - pattern: "router.register('/feature', featureHandler)"
 ```
 
 ## Validation Loop
@@ -183,7 +183,7 @@ test('handles API timeouts gracefully', async () => {
 ### Level 3: Integration Test
 ```bash
 # Start the service
-uv run python -m src.main --dev
+{{YOUR_START_SERVER_COMMAND}}
 
 # Test the endpoint
 curl -X POST http://localhost:8000/feature \
@@ -191,7 +191,7 @@ curl -X POST http://localhost:8000/feature \
   -d '{"param": "test_value"}'
 
 # Expected: {"status": "success", "data": {...}}
-# If error: Check logs at logs/app.log for stack trace
+# If error: Check logs for stack trace
 ```
 
 ## Final validation Checklist

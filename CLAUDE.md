@@ -5,9 +5,9 @@
 
 ## Project Awareness
 
-- Read `PLANNING.md` at the start of each conversation for architecture, goals, and constraints.
-- Check `TASK.md` before starting work. Add new tasks if missing.
-- Follow naming conventions, file structure, and patterns defined in `PLANNING.md`.
+- If `PLANNING.md` exists, read it at the start of each conversation for architecture, goals, and constraints.
+- If `TASK.md` exists, check it before starting work. Add new tasks if missing.
+- Follow naming conventions, file structure, and patterns defined in `PLANNING.md` (if it exists).
 
 > Create `PLANNING.md` and `TASK.md` for your project — they are not part of this template.
 

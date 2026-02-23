@@ -2,7 +2,7 @@
 
 This folder is **intentionally empty** — populate it with code from your own project.
 
-AI coding assistants perform significantly better when they can see patterns to follow. The more relevant examples you provide, the better the generated code will match your project's conventions.
+> **Why no mock examples?** Generic mock examples (e.g., a simple `agent.py`) provide zero value when the AI tries to match *your* architecture. The AI performs significantly better when it can see *your* real patterns to follow. The more relevant examples you provide, the better the generated code will match your project's conventions.
 
 ## What to Add
 

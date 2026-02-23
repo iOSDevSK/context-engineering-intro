@@ -40,13 +40,13 @@ Read PRPs/templates/prp_base.md and use it as the structural template for the PR
 - Include error handling strategy
 - list tasks to be completed to fulfill the PRP in the order they should be completed
 
-### Validation Gates (Must be Executable) eg for python
+### Validation Gates (Must be Executable)
 ```bash
-# Syntax/Style
-ruff check --fix && mypy .
+# Syntax/Style/Types
+{{YOUR_LINTER_COMMAND}} --fix && {{YOUR_TYPECHECK_COMMAND}}
 
 # Unit Tests
-uv run pytest tests/ -v
+{{YOUR_TEST_COMMAND_HERE}}
 
 ```
 
