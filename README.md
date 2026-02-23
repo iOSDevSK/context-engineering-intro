@@ -86,7 +86,7 @@ context-engineering-intro/
 │   ├── templates/
 │   │   └── prp_base.md       # Base template for PRPs
 │   └── EXAMPLE_multi_agent_prp.md  # Example of a complete PRP
-├── examples/                  # Your code examples (critical!)
+├── examples/                  # Your code examples — add your own (critical!)
 ├── use-cases/                 # Specialized templates (Pydantic AI, MCP servers, agent factory)
 ├── validation/                # Validation utilities
 ├── CLAUDE.md                 # Global rules for AI assistant
@@ -229,7 +229,7 @@ The command follows this process:
 ### How /execute-prp Works
 
 1. **Load Context**: Reads the entire PRP
-2. **Plan**: Creates detailed task list using TodoWrite
+2. **Plan**: Creates detailed task list for implementation
 3. **Execute**: Implements each component
 4. **Validate**: Runs tests and linting
 5. **Iterate**: Fixes any issues found
@@ -239,7 +239,7 @@ See `PRPs/EXAMPLE_multi_agent_prp.md` for a complete example of what gets genera
 
 ## Using Examples Effectively
 
-The `examples/` folder is **critical** for success. AI coding assistants perform much better when they can see patterns to follow.
+The `examples/` folder is **critical** for success — populate it with code from your existing project. AI coding assistants perform much better when they can see patterns to follow.
 
 ### What to Include in Examples
 

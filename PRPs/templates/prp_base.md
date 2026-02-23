@@ -13,6 +13,8 @@ Template optimized for AI agents to implement features with sufficient context a
 
 ---
 
+> **Note**: Examples in this template use Python (ruff, mypy, pytest). Replace with your stack's equivalents (e.g., eslint/tsc/vitest for TypeScript, golangci-lint/go test for Go).
+
 ## Goal
 [What needs to be built - be specific about the end state and desires]
 
@@ -79,7 +81,7 @@ Examples:
 
 ```
 
-### list of tasks to be completed to fullfill the PRP in the order they should be completed
+### list of tasks to be completed to fulfill the PRP in the order they should be completed
 
 ```yaml
 Task 1:

@@ -15,8 +15,8 @@ Implement a feature using using the PRP file.
 
 2. **ULTRATHINK**
    - Think hard before you execute the plan. Create a comprehensive plan addressing all requirements.
-   - Break down complex tasks into smaller, manageable steps using your todos tools.
-   - Use the TodoWrite tool to create and track your implementation plan.
+   - Break down complex tasks into smaller, manageable steps.
+   - Use available task management tools to create and track your implementation plan.
    - Identify implementation patterns from existing code to follow.
 
 3. **Execute the plan**
